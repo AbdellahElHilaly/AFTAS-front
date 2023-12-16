@@ -22,3 +22,7 @@ export class CompetitionCardComponent implements OnInit{
   }
 
 }
+
+// should i generate a module for this component so  can use HttpClientModule? -> yes
+// ng g m core/view/shared/widget/competition-card --flat
+// name: competition-card

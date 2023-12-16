@@ -1,0 +1,21 @@
+<app-navigation></app-navigation>
+
+
+@defer {
+  <div class="grid grid-cols-2 md:grid-cols-3 gap-4">
+    <app-competition-card *ngFor="let competition of response?.data "[competition]="competition"/>
+  </div>
+
+}
+@placeholder {
+  <app-skeleton-card/>
+}
+@error {
+  <div class="text-center">
+    <h1 class="text-2xl font-bold">Error</h1>
+    <p class="text-xl">{{response?.message}}</p>
+    <p class="text-xl">{{response?.timestamp}}</p>
+  </div>
+}
+
+
