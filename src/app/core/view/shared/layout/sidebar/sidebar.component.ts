@@ -1,6 +1,4 @@
-import {Component, Output, EventEmitter, signal, WritableSignal} from '@angular/core';
-import {SidebarService} from "./sidebar.service";
-import {SidebarContent} from "./sidebar-content";
+import {Component} from '@angular/core';
 
 @Component({
   selector: 'app-sidebar',
@@ -11,15 +9,7 @@ import {SidebarContent} from "./sidebar-content";
 })
 export class SidebarComponent {
 
-  protected readonly SidebarContent = SidebarContent;
 
-  constructor(public sidebarService: SidebarService) {
-
-  }
-
-  changePage(content: SidebarContent) {
-    this.sidebarService.contentShow.set(content)
-  }
 
 
 }
