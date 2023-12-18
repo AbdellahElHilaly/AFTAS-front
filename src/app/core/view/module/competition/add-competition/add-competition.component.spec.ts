@@ -1,18 +1,18 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 
-import { CrudDashboardComponent } from './crud-dashboard.component';
+import { AddCompetitionComponent } from './add-competition.component';
 
-describe('CrudDashboardComponent', () => {
-  let component: CrudDashboardComponent;
-  let fixture: ComponentFixture<CrudDashboardComponent>;
+describe('AddCompetitionComponent', () => {
+  let component: AddCompetitionComponent;
+  let fixture: ComponentFixture<AddCompetitionComponent>;
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      imports: [CrudDashboardComponent]
+      imports: [AddCompetitionComponent]
     })
     .compileComponents();
     
-    fixture = TestBed.createComponent(CrudDashboardComponent);
+    fixture = TestBed.createComponent(AddCompetitionComponent);
     component = fixture.componentInstance;
     fixture.detectChanges();
   });

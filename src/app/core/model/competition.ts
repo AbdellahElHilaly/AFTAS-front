@@ -1,13 +1,11 @@
 export interface Competition {
-
   id: String;
   code: string;
   date: Date;
-  startTime: Date;
-  endTime: Date;
+  startTime: String;
+  endTime: String;
   numberOfParticipants: number;
   location: string;
   amount: number;
-
 }
 
