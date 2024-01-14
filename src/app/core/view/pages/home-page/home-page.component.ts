@@ -3,6 +3,7 @@ import {initFlowbite} from "flowbite";
 import {NavigationComponent} from "../../shared/layout/navigation/navigation.component";
 import {RouterLink, RouterOutlet} from "@angular/router";
 import {Endpoint} from "../../../../util/config/endpoint";
+import {SpinnerComponent} from "../../shared/widget/spinner/spinner.component";
 
 @Component({
   selector: 'app-home-page',
@@ -10,7 +11,8 @@ import {Endpoint} from "../../../../util/config/endpoint";
   imports: [
     NavigationComponent,
     RouterLink,
-    RouterOutlet
+    RouterOutlet,
+    SpinnerComponent
   ],
   templateUrl: './home-page.component.html',
   styleUrl: './home-page.component.css'

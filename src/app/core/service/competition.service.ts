@@ -1,6 +1,6 @@
-import {Injectable} from '@angular/core';
+import {Injectable, signal, WritableSignal} from '@angular/core';
 import {HttpClient} from '@angular/common/http';
-import {Observable} from 'rxjs';
+import {Observable, of} from 'rxjs';
 import {Competition} from "../model/competition";
 import {Endpoint} from "../../util/config/endpoint";
 import {BackEndResponse} from "../model/responce";
@@ -9,7 +9,9 @@ import {BackEndResponse} from "../model/responce";
   providedIn: 'root'
 })
 export class CompetitionService {
+
   private url = Endpoint.COMPETITION;
+  public competitions: WritableSignal<Competition[]> = signal([]);
 
   constructor(private http: HttpClient) {
   }
@@ -22,7 +24,7 @@ export class CompetitionService {
     return this.http.post(this.url, competitionData);
   }
 
-
 }
+
 
 

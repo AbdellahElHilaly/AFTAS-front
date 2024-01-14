@@ -1,11 +1,12 @@
 import {Component, ElementRef, OnInit, ViewChild} from '@angular/core';
 import {initFlowbite} from "flowbite";
-import {DatePipe, JsonPipe, NgForOf} from "@angular/common";
-import { FormGroup, FormsModule, ReactiveFormsModule} from "@angular/forms";
+import {DatePipe, JsonPipe, NgForOf, NgIf} from "@angular/common";
+import {FormsModule, ReactiveFormsModule} from "@angular/forms";
 import {CompetitionService} from "../../../../service/competition.service";
 import {CompetitionForm} from "../../../../model/form/competition-form";
 import {Competition} from "../../../../model/competition";
 import {CompetitionImpl} from "../../../../model/impl/competition-impl";
+import {Router} from "@angular/router";
 
 
 
@@ -17,7 +18,8 @@ import {CompetitionImpl} from "../../../../model/impl/competition-impl";
     FormsModule,
     ReactiveFormsModule,
     JsonPipe,
-    DatePipe
+    DatePipe,
+    NgIf
   ],
   templateUrl: './add-competition.component.html',
   styleUrl: './add-competition.component.css'
@@ -27,11 +29,9 @@ export class AddCompetitionComponent implements OnInit{
 
   competitionFormGlobal: CompetitionForm = new CompetitionForm();
 
-  competitionForm: FormGroup = this.competitionFormGlobal.formGroup;
-
-
   hours: Array<string> = new Array(23);
   minutes: Array<string> = new Array(59);
+  private router: Router = new Router();
 
   constructor(private competitionService:CompetitionService) {
     this.initTimeValues();
@@ -44,25 +44,25 @@ export class AddCompetitionComponent implements OnInit{
 
 
   createCompetition() {
+
     this.ngAfterViewInit();
 
-    this.competitionFormGlobal.formGroup = this.competitionForm;
     let competition:Competition = new CompetitionImpl(this.competitionFormGlobal);
     this.competitionService.createCompetition(competition).subscribe(
       (data:Competition) => {
-        console.log(data);
+        this.router.navigate(['admin/competitions/list']).then(r => alert("Competition created successfully"));
       },
-      (error) => {
-        console.error(error);
+      (result) => {
+        console.error(result);
+        alert(result.error.message);
       }
     );
 
   }
 
 
-
   ngAfterViewInit() {
-    this.competitionForm.value.date = this.el?.nativeElement.value;
+    this.competitionFormGlobal.formGroup.value.date = this.el?.nativeElement.value;
   }
 
   private initTimeValues() {
@@ -76,6 +76,9 @@ export class AddCompetitionComponent implements OnInit{
       else this.minutes[i] = (i + 1).toString();
     }
   }
+
+  protected readonly CompetitionForm = CompetitionForm;
+
 }
 
 
